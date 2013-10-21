@@ -1,23 +1,200 @@
-@import 'normalize';
+// @import 'normalize';
 @import 'compass';
 @import 'helper-classes';
-@import 'zen';
+
+
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
-// Zen Grids general parameters
-$zen-column-count: 12;
-$zen-gutter-width: 36px;
-$zen-auto-include-item-base: false;
 
-$color-green: #aabf46;
-$color_black: #000;
-$color-grey: #333;
-$color_white: #fff;
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
-// Table Colours
+
+
+// Frameless              <http://framelessgrid.com/>
+// by Joni Korpi          <http://jonikorpi.com/>
+// licensed under CC0     <http://creativecommons.org/publicdomain/zero/1.0/>
+
+
+////// Configuration //////
+
+$font-size: 17px;         // Your base font-size in pixels
+$line: 24px;              // Your standard line height in pixels
+$em: $font-size / 1em;    // Shorthand for outputting ems
+
+$column: 48px;            // The column-width of your grid in pixels
+$gutter: 24px;            // The gutter-width of your grid in pixels
+
+
+
+////// Column-widths in variables, in ems //////
+
+
+ $col1: ( 1 * ($column + $gutter) - $gutter) / $em;
+ $cols1: $col1; // So you can use either $col1 or $cols1.
+ $cols2: ( 2 * ($column + $gutter) - $gutter) / $em;
+ $cols3: ( 3 * ($column + $gutter) - $gutter) / $em;
+ $cols4: ( 4 * ($column + $gutter) - $gutter) / $em;
+ $cols5: ( 5 * ($column + $gutter) - $gutter) / $em;
+ $cols6: ( 6 * ($column + $gutter) - $gutter) / $em;
+ $cols7: ( 7 * ($column + $gutter) - $gutter) / $em;
+ $cols8: ( 8 * ($column + $gutter) - $gutter) / $em;
+ $cols9: ( 9 * ($column + $gutter) - $gutter) / $em;
+$cols10: (10 * ($column + $gutter) - $gutter) / $em;
+$cols11: (11 * ($column + $gutter) - $gutter) / $em;
+$cols12: (12 * ($column + $gutter) - $gutter) / $em;
+$cols13: (13 * ($column + $gutter) - $gutter) / $em;
+$cols14: (14 * ($column + $gutter) - $gutter) / $em;
+$cols15: (15 * ($column + $gutter) - $gutter) / $em;
+$cols16: (16 * ($column + $gutter) - $gutter) / $em;
+
+
+
+////// Column-widths in a function, in ems //////
+
+@mixin width ($cols:1) {
+  width: ($cols * ($column + $gutter) - $gutter) / $em;
+}
+
+// Margin, padding, and border resets
+// except for form elements
+
+
+body, div,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, th, td,
+article, aside, figure, footer, header, hgroup, menu, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+
+// Consistency fixes
+// adopted from http://necolas.github.com/normalize.css/
+
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, nav, section, audio, canvas, video {
+  display: block;
+}
+
+html {
+  height: 100%; 
+  -webkit-text-size-adjust: 100%; 
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100%; 
+  font-size: 100%;
+}
+
+sub, sup {
+  font-size: 75%; 
+  line-height: 0; 
+  position: relative; 
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+pre {
+  white-space: pre; 
+  white-space: pre-wrap; 
+  word-wrap: break-word;
+}
+
+b, strong {font-weight: bold;}
+abbr[title] {border-bottom: 1px dotted;}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a img, img {
+  -ms-interpolation-mode: bicubic;
+  border: 0;
+}
+
+input, textarea, button, select {
+  margin: 0;
+  font-size: 100%;
+  line-height: normal;
+  vertical-align: baseline;
+}
+
+  button,
+  html input[type="button"], 
+  input[type="reset"], 
+  input[type="submit"] {
+      cursor: pointer;
+      -webkit-appearance: button;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+       -o-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+        box-sizing: border-box;
+  }
+
+textarea {
+  overflow: auto;
+}
+
+
+// Style overrides for IE6-8
+// http://jonikorpi.com/leaving-old-IE-behind/
+
+
+.ie {
+
+}
+
+
+
+// An easy way to zoom your entire layout in or out (as long as it's set in ems).
+// Just change the media queries to activate them.
+// Assuming your base font-size is 16:
+// - the first one zooms out by a factor of (16-2)/16 = 0.875
+// - the second one zooms in by a factor of (16+2)/16 = 1.125  
+
+
+@media screen and (max-width: 1px) {
+  body {
+    font-size: ($font-size - 2) / $em;
+  }
+}
+
+@media screen and (max-width: 1px) {
+  body {
+    font-size: ($font-size + 2) / $em;
+  }
+}
+
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+
+////// Table Colours //////
+
 $color-boxing: #a8bd45;
 $color-kickboxing: #6f8c13;
 $color-juniorboxing: #49561a;
@@ -25,602 +202,552 @@ $color-jj: #b6c27c;
 $color-jjkids: #c4c6b3;
 $color-judo: #74736a;
 
-$box-sizing-polyfill-path: "boxsizing.htc";
 
-// Lets add some generic styles to our section blocks in the main part of our website content.
+////// Typography Presets //////
 
-// Typical div parameters for 3 & 4 column content.
-// Zen Grids layout parameters for 3 & 4 column divs and spans.
-.zen-box {
-  @include zen-grid-item-base();
-  img {
-    width: 100%;
-  }
-
-  // Zen Clear
-    @include zen-clear();
-  
-  // For three column layouts
-  &.three-col-1 {
-    @include zen-grid-item(12, 1);
-  }
-  &.three-col-2 {
-    @include zen-grid-item(12, 1);
-  }
-  &.three-col-3 {
-    @include zen-grid-item(12, 1);
-  }
-  @media only screen and (min-width: 481px) {
-    &.three-col-1 {
-      @include zen-grid-item(4, 1);
-    }
-    &.three-col-2 {
-      @include zen-grid-item(4, 5);
-    }
-    &.three-col-3 {
-      @include zen-grid-item(4, 9);
-    }
-  }
-
-  // For four column layouts
-  &.four-col-1 {
-    @include zen-grid-item(12, 1);
-  }
-  &.four-col-2 {
-    @include zen-grid-item(12, 1);
-  }
-  &.four-col-3 {
-    @include zen-grid-item(12, 1);
-  }
-  &.four-col-4 {
-    @include zen-grid-item(12, 1);
-  }
-  // Two up
-  @media only screen and (min-width: 481px) {
-    &.four-col-1 {
-      @include zen-grid-item(6, 1);
-    }
-    &.four-col-2 {
-      @include zen-grid-item(6, 7);
-    }
-    &.four-col-3 {
-      @include zen-grid-item(6, 1);
-    }
-    &.four-col-4 {
-      @include zen-grid-item(6, 7);
-    }
-    &.four-col-2,
-    &.four-col-4 {
-      @include zen-clear(none);
-    }
-  }
-  //Four up
-  @media only screen and (min-width: 768px) {
-    &.four-col-1 {
-      @include zen-grid-item(3, 1);
-    }
-    &.four-col-2 {
-      @include zen-grid-item(3, 4);
-    }
-    &.four-col-3 {
-      @include zen-grid-item(3, 7);
-    }
-    &.four-col-4 {
-      @include zen-grid-item(3, 10);
-    }
-    &.four-col-3 {
-      @include zen-clear(none);
-    }
-  }
-
-  // Full page widths
-  &.full {
-    @include zen-grid-item(12, 1);
-  }
+body {
+  font-size: $font-size / 17px * 1em;
+  line-height: $line / $em;
+  font-family: lato, sans-serif;
+  font-weight: 600;
 }
 
-// Title Description Text wraps to eliminate need for line breaks.
-.title-descriptions {
-  max-width: 40%;
+h1, h2, h3, h4 {
+  font-family: permanent marker;
 }
 
-.content_wrapper {
-  margin-bottom: 2em;
+.small {
+  font-size: 10px / $em;
+  line-height: $line / 10px * 1em;
 }
 
-// Sets consistent max-width and margin for site content.
-//header, section, .language-menu 
-.container {
-  @include clearfix;
-  padding: 0 1.8em;
-  max-width: 1480px;
-  margin: 0 auto;
+.normal, h1, h2, h3, h4 {
+  font-size: 1em;
 }
 
-// Begin resets: General positioning
-* {
-  @include box-sizing(border-box); 
-  ::selection {background: $color-green;}
-  ::-moz-selection {background: $color-green;}
+.big {
+  font-size: 23px / $em;
+  line-height: 24 / 23 * 1em;
 }
 
-body { // Typography 
-  font-size: 20px;
-  font-weight: 400;
-  font-family: lato;
-  @media only screen and (max-width:1280px) {
-    font-size: 18px;
-  }
-  @media only screen and (max-width:1150px) {
-    font-size: 16px;
-  }
-  @media only screen and (max-width:1050px) {
-    font-size: 14px;
-  }
-
-  a { // links
-    @include transition(all 0.3s);
-    text-decoration: none;
-    font-weight: 600;
-    color: #000;
-  }
-  a:hover { //links on hover
-    @include transition(all 0.3s);
-    text-decoration: none;
-    font-weight: 600;
-    color: $color-green;
-  }
-
-  // Adds background to entire body element.
-  @include zen-grid-container;
-  background: #f5f5f5 url(../img/noise.png) repeat;
-  background-attachment: scroll;
+.large {
+  font-size: 27px / $em;
+  line-height: 27 / 27 * 1em; // Originally 36 / 27
 }
 
-// Navigation margins set to zero.
-nav ul {
-  margin: 0;
+.huge {
+  font-size: 44px / $em;
+  line-height: 48 / 44 * 1em;
 }
 
-// End resets
-header, section, {
-  @include clearfix;
+.enormous {
+  font-size: 72px / $em;
+  line-height: 72 / 72 * 1em;
 }
 
-// Language switcher menu
-.topbar {
-  @include clearfix;
-  background-color: #111;
-  margin-bottom: 2em;
-  border-bottom: 1px solid #eee;
-  // Language switcher word styles
-  .language-menu {
-    text-align: right;
-    padding: 0 0 0.16em;
-    margin: 0;
-    li {
-      padding: 0;
-      margin: 0;
-      display: inline-block;
-      a {
-        @include transition(all 0.3s);
-        font-weight: 200;
-        color: #ccc;
-        text-transform: uppercase;
-        font-size: 0.666666em;
-        padding: 0 0 0.25em 0.5em;
-      }
-      a.active {
-        font-weight: 600;
-        color: #fff;
-      }
-      a:hover {
-        @include single-text-shadow;
-        color: #fff;
-      }
-    }
-  }
+.gigantic {
+  font-size: 116px / $em;
+  line-height: 120 / 116 * 1em;
 }
 
-// Header formatting, can wrap in header if need be.
-header {
-  .main-logo { // Our logo
-    @media only screen and (min-width: 481px) {
-      @include zen-grid-item-base();
-      @include zen-grid-item(6, 1);
-    }
-    @media only screen and (min-width: 481px) {
-      @include zen-grid-item(3, 1)
-    }
-    img {
-      width: 100%;
-      min-width: 200px;
-    }
-  }
-  // Our primary navigation menu.
-  .main-menu {
-    text-align: center;
-    margin-top: 1em;
-    padding: 0;
-    vertical-align: middle;
-    @media only screen and (min-width: 481px) {
-      @include zen-grid-item-base();
-      @include zen-grid-item(6, 7);
-      @include zen-nested-container();
-      text-align: right;
-      margin-top: 0;
-    }
-    @media only screen and (min-width: 481px) {
-      @include zen-grid-item(9, 4)
-    }
-    li {
-      display: inline-block;
-      a {
-        text-transform: uppercase;
-        padding: 0.6em;
-        display: inline-block;
-        @media only screen and (min-width: 481px) {
-          padding-right: 0;// 0 0 0.6em;
-        }
-      }
-    }
-  }
+
+
+////// Typography //////
+
+p {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }
 
-// Intro page Slogan and Boxing gloves
-.main-slogan {
-  font-size: 4em;
-  text-align: center;
-  margin: 0;
-  padding: 0 0 0.5em;
-  //@media only 
-  @media only screen and (max-width: 768px) {
-    margin-top: 0.8em;
-  }
+a, a:hover {
+  text-decoration: none;
+  font-weight: 600;
 }
 
-// "Once a warrior" and By-line Quotes Zen Grids parameters
-.warrior,
-.by-line {
-  @include zen-grid-item-base();
-  @include zen-grid-item(8, 3);
-  clear: both;
-  p { // By-line special Typography parameters
-    margin: 0;
-    font-family: lato;
-    font-weight: 200;
-    text-align: center;
+li {
+  list-style: none;
+}
+
+#topbar {
+  a {
+    font-weight: 400;
     text-transform: uppercase;
-    font-size: 1.333333em;
   }
-  img { //  Gloves Images to Zen Grid
-    &.glove-left { @include zen-grid-item(5, 2);}
-    &.glove-right { @include zen-grid-item(5, 7);}
+  a.active {
+    font-weight: 800;
   }
 }
 
-.button-wrapper {
-  @include zen-clear;
-  padding-top: 2em;
+#intro h3 {
+  font-family: lato;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 14px/$em;
+  line-height: (32)/28 * 1em;
+}
+
+#masthead a {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+
+
+////// Colours & links //////
+
+$color-body: #333;
+$color-emphasis: #111;
+$color-aside: #ccc;
+$color-background: #f5f5f5;
+$color-highlight: #aabf46;
+$color-link: #6f8c13;
+
+
+body {
+  background: $color-background;
+  color: $color-body;
+}
+
+h1, h2, h3, h4 {
+  color: $color-emphasis;
+}
+
+a {
+  @include transition(all 0.3s);
+  color: $color-emphasis;
+}
+
+a:active {
+  @include transition(all 0.3s);
+  color: $color-background;
+  border-bottom-color: $color-link;
+}
+
+#navigation a:hover, #navigation a:hover .icon, .day a:hover {
+  @include transition(all 0.3s);
+  background: $color-link;
+  color: $color-background;
+}
+
+.icon, .day a {
+  background: $color-emphasis;
+  color: $color-background;
+  display: block;
 }
 
 .big-button {
   @include transition(all 0.6s);
-  @include border-radius(3px);
-  background-color: #000;
-  color: #fff;
-  padding: 0.36em 0.58em;
-  text-decoration: none;
-  text-transform: uppercase;
-  display: inline-block;
+  background-color: $color-emphasis;
+  color: $color-background;
+
   &:hover {
     @include transition(all 0.6s);
-    background-color: $color-green;
-    color: #fff;
+    background-color: $color-link;
+    color: $color-background;
   }
 }
 
+#topbar {
+  @include transition(all 0.3s);
+  background-color: $color-emphasis;
 
-
-//Sass version of timetable.
-
-
-.dow-container {
-  font-size: 16px;     // Your base font-size in pixels
-  $em: 16px / 1em;  // Shorthand for outputting ems
-  // General Settings
-  $timeslots-per-hour: 4; // Time slots per hour.
-  $timeslot-height: 1em; // One timeslot = 15 mins
-  // Table Specifics
-  $tableStartTime: 15.00; // Time the table begins in decimals e.g. 15.75 = 15:45
-  $total-hours: 7; // Number of hours in the table.
-  $days-in-week: 5; // Number of days in the table.
-  $headerHeight: 1.5em;
-
-
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 0.86em;
-  position: relative;
-  width: 100%-36px;
-
-  .session {
-    display: table;
-    .text-surround {
-      display: table-cell;
-      vertical-align: middle;
-    }
+  a, a.active:hover {
+    color: $color-background;
   }
 
-  @mixin sessionBlock($dayOfWeek, $startTime /* Start time is using decimals e.g. 15.75 = 15:45 */, $durationMinutes, $numConEvents: 1, $posOfConEvent: 1 ) { // Day of week
-    $sessionWidth: (100%/$days-in-week)/$numConEvents;
-    position: absolute;
-    width: 100%;
-    top: ($startTime - $tableStartTime) * $timeslots-per-hour * $timeslot-height + $headerHeight;
-    height: $durationMinutes/15 * $timeslot-height;
-    width: $sessionWidth;
-    left: (($dayOfWeek - 1) * (100%/$days-in-week))+(($posOfConEvent - 1)*$sessionWidth);
-    border: 1px solid transparent;
-    color: $color-white;
-  }
-  .calendar {
-    border: 1px lighten($color-grey, 20%) solid;
-    width: 100%;
-    th {
-      height: $headerHeight;
-      vertical-align: middle;
-      width: 99%/$days-in-week;
-      color: $color-white;
-      background-color: $color-grey;
-    }
-    .day-of-week {
-      border: 1px lighten($color-grey, 20%) solid;
-      height: $timeslot-height*$total-hours*$timeslots-per-hour;
-    }
-  }
-
-  #kickboxing-m1 {
-    @include sessionBlock(1, 15.00,75, 1, 1);
-    border-color: darken($color-kickboxing, 20%);
-    background-color: $color-kickboxing;
-  }
-  #jj-kids-m1 {
-    @include sessionBlock(1, 18.25,60, 2, 2);
-    border-color: darken($color-jjkids, 20%);
-    background-color: $color-jjkids;
-  }
-  #boxing-m1 {
-    @include sessionBlock(1, 18.00,90, 2, 1);
-    border-color: darken($color-boxing, 20%);
-    background-color: $color-boxing;
-  }
-  #boxing-m2 {
-    @include sessionBlock(1, 19.50,90, 2, 2);
-    border-color: darken($color-boxing, 20%);
-    background-color: $color-boxing;
-  }
-  #jj-m1 {
-    @include sessionBlock(1, 20.50,90, 2, 1);
-    border-color: darken($color-jj, 20%);
-    background-color: $color-jj;
-  }
-  #boxing-juniors-t1 {
-    @include sessionBlock(2, 17.50,75, 1, 1);
-    border-color: darken($color-juniorboxing, 20%);
-    background-color: $color-juniorboxing;
-  }
-  #judo-t1 {
-    @include sessionBlock(2, 19.50,90, 1, 1);
-    border-color: darken($color-judo, 20%);
-    background-color: $color-judo;
-  }
-  #kickboxing-w1 {
-    @include sessionBlock(3, 15.00,75, 1, 1);
-    border-color: darken($color-kickboxing, 20%);
-    background-color: $color-kickboxing;
-  }
-  #jj-kids-w1 {
-    @include sessionBlock(3, 18.25,60, 2, 2);
-    border-color: darken($color-jjkids, 20%);
-    background-color: $color-jjkids;
-  }
-  #boxing-w1 {
-    @include sessionBlock(3, 18.00,90, 2, 1);
-    border-color: darken($color-boxing, 20%);
-    background-color: $color-boxing;
-  }
-  #boxing-w2 {
-    @include sessionBlock(3, 19.50,90, 2, 1);
-    border-color: darken($color-boxing, 20%);
-    background-color: $color-boxing;
-  }
-  #jj-w1 {
-    @include sessionBlock(3, 20.50,90, 2, 2);
-    border-color: darken($color-jj, 20%);
-    background-color: $color-jj;
-  }
-  #boxing-juniors-r1 {
-    @include sessionBlock(4, 17.50,75, 1, 1);
-    border-color: darken($color-juniorboxing, 20%);
-    background-color: $color-juniorboxing;
-  }
-  #judo-r1 {
-    @include sessionBlock(4, 19.50,90, 1, 1);
-    border-color: darken($color-judo, 20%);
-    background-color: $color-judo;
-  }
-  #kickboxing-f1 {
-    @include sessionBlock(5, 15.00,75, 1, 1);
-    border-color: darken($color-kickboxing, 20%);
-    background-color: $color-kickboxing;
-  }
-  #boxing-f1 {
-    @include sessionBlock(5, 19.50,90, 2, 1);
-    border-color: darken($color-boxing, 20%);
-    background-color: $color-boxing;
-  }
-  #jj-free-f1 {
-    @include sessionBlock(5, 19.50,90, 2, 2);
-    border-color: darken($color-jj, 20%);
-    background-color: $color-jj;
-  }
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
-// Styling for our footer.
-
-footer {
-  background-image: url(../img/Map.png);
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  border-top-color: #696969;
-  border-top-style: solid;
-  border-top-width: 1px;
-  display: block;
-  color: #fff;
-
-  .overlay {
-    -webkit-transition-duration: 0.30000001192092896s;
-    -webkit-transition-property: opacity;
-    -webkit-transition-timing-function: cubic-bezier(0, 0, 0.58, 1);
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: rgba(0, 0, 0, 0.746094);
-    background-image: none;
-    background-origin: padding-box;
-    display: block;
-  }
-
-  // Contact styling.
-  .contact-info {
-    h2, h3 {
-      color: #fff;
-    }
-    a {
-      color: $color-green;
-    }
-    a:hover {
-      color: #696969;
-    }
-    img {
-      width: 15%;
-    }
-    
-    // Email link styling.
-    .contact-email {
-      font-size:2.2em;
-      color: $color-green;
-    }
-
-    // Phone number styling.
-    .contact-phone {
-      font-size:1.4em;
-      color: $color-green;
-    }
-
-    // Contact address styling.
-    .contact-address {
-      font-weight: 200;
-    }
-  }
-  // Partner link styling.
-  .contact-info .partner-link {
-    display: block;
-    color: $color-white;
-    font-weight: 200;
+  a:hover {
+    @include single-text-shadow;
+    color: $color-link;
   }
 }
 
+::selection {
+  background: $color-link;
+  color: $color-background;
+}
+
+::-moz-selection {
+  background: $color-link;
+  color: $color-background;
+}
+
+img::selection {
+  background: transparent;
+}
+
+img::-moz-selection {
+  background: transparent;
+}
+
+body {
+  -webkit-tap-highlight-color: fadeout($color-link, 62%);
+}
 
 
+////// Common styles //////
 
+img {
+  max-width: $cols4;
+  margin: 0 auto;
+}
 
-// // Table General Parameters.
+.wrapper, header, section {
+  padding: 0 18px/$em;
+  margin: 0 auto;
+  max-width: $cols8;
+}
 
-// .timetable {
-//   text-transform: uppercase;
-//   text-align: center;
-//   border: 1px $color-grey solid;
-//   width: 100%;
-//   font-size: 0.86em;
-
-//   .table-head { 
-//     background-color: $color-grey; 
-//     color: $color_white; 
-//     border: 1px $color-grey solid;
-//     // padding: 10px; 
-//     vertical-align: top;
-//     text-align: center;
-//     font-size: 110%; 
-//     font-weight: bold;
-//     border-collapse: separate;
-//   }
-
-//   th {    
-//     &.day {
-//       width: 19%;
-//     }
-//   }
-
-//   td { // Styling for "Time" column.
-//     color: $color-white;
-//     &:nth-child(1) {
-//       color: $color-black;
-//       border: 1px $color-black solid;
-//     }
-//     &[colspan="3"] {
-//       width: 9.5%;
-//     }
-//     &[colspan="6"] {
-//       width: 19%;
-//     }
-//   }
-
-//   tr {
-//     padding: 4px;
-//     border-top: 1px lighten($color-black, 86%) solid;
+.section-header {
+  margin: 1.6em auto;
   
-//     // td colours for unique courses.
-//     .kick-boxing {
-//       border: 1px darken($color-kickboxing, 20%) solid;
-//       background-color: $color-kickboxing; 
-//     } 
-//     .boxing {
-//       border: 1px darken($color-boxing, 20%) solid;
-//       background-color: $color-boxing;
-//     } 
-//     .jj {
-//       border: 1px darken($color-jj, 20%) solid;
-//       background-color: $color-jj;
-//     }
-//     .jj-free {
-//       border: 1px darken($color-jj, 20%) solid;
-//       background-color: $color-jj;
-//     }
-//     .jj-kids {
-//       border: 1px darken($color-jjkids, 20%) solid;
-//       background-color: $color-jjkids;
-//     }
-//     .junior-boxing {
-//       border: 1px darken($color-juniorboxing, 20%) solid;
-//       background-color: $color-juniorboxing;
-//     }
-//     .judo {
-//       border: 1px darken($color-judo, 20%) solid;
-//       background-color: $color-judo;
-//     }
-//   }
-// }  
+  h2 {
+    max-width: $cols8;
+    margin-bottom: .68em;
+  }
+
+  p {
+    max-width: $cols8;
+  }
+}
+
+.big-button {
+  margin: 1.28em 0 2em;
+  padding: 0.2em 1.2em;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.day {
+  max-width: $cols8;
+  margin: 1.28em auto;
+  text-align: center;
+  text-transform: uppercase;
+  display: block;
+}
+
+#topbar {
+  @include clearfix;
+  margin-bottom: 1em;
+
+  .language-select {
+    float: right;
+    padding: 0 18px/$em;
+
+    li {
+      padding: 0 18px/$em;
+      display: inline-block;
+      float: right;
+    }
+  }
+}
+
+#logo img {
+  width: $cols3;
+}
+
+#navigation {
+  vertical-align: top;
+
+  ul {
+    padding: 1em 0;
+
+    li {
+      font-size: 12px/$em;
+      display: inline-block;
+      width: 70px/$em;
+      margin: 0 3px/$em 6px/$em;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+    }
+    .icon {
+      font-size: 28px/$em;
+      line-height: (68)/28*1em;
+      vertical-align: middle;
+    }
+  }
+}
+
+#masthead {
+  @include clearfix;
+  text-align: center;
+
+  h3 {
+    max-width: $cols4;
+    margin: 1em auto;
+  }
+
+  .gloves {
+    max-width: $cols4;
+    margin: 0 auto;
+    // clear: both;
+  }
+
+  #glove-right {
+    width: $cols2;
+    display: inline-block;
+  }
+
+  #glove-left {
+    width: $cols2;
+    display: inline-block;
+  }
+}
+
+
+#classes, #trainers, #join {
+
+  .block {
+    vertical-align: top;
+    max-width: $cols8;
+  }
+}
+
+
+
+
+////// Full page zooms //////
+////// 0.882352941 0.941176471 1.058823529 1.117647059 //////
+
+@media screen and (max-width: 16.875em) { 
+  body {
+    font-size: ($font-size - 2)/16px*1em;
+  }
+
+  #masthead, #introduction, {
+    padding-left: 10px/$em;
+    padding-right: 10px/$em;
+  }
+}
+
+@media screen and (max-width: 19.9375em) {
+  body {
+    font-size: ($font-size - 1)/16px*1em;
+  }
+}
+
+@media screen
+  screen and (min-width: 32.5em) and (max-width: 37.4375em),
+  screen and (min-width: 45em) and (max-width: 56.9375em),
+  screen and (min-width: 77.5em) and (max-width: 102.4375em),
+  screen and (min-width: 135em) {
+  body {
+    font-size: ($font-size + 1)/16px*1em;
+  }
+}
+
+@media screen
+  screen and (min-width: 102.5em) and (max-width: 117.9375em),
+  screen and (min-width: 150em) {
+  body {
+    font-size: ($font-size + 2)/16px*1em;
+  }
+}
+
+
+
+////// Mobile layout 240–479 px Zoomed out below 320 px //////
+
+@media screen and (min-width: 15em) {
+
+}
+
+
+////// Wide mobile layout 480-767 px Zoomed in above 480 px //////
+
+@media screen and (min-width: 30em) {
+
+  .wrapper, header, section {
+    padding: 0 24px/$em;
+  }
+
+  #masthead {
+
+    #intro {
+      padding: 1em 0;
+      clear: both;
+    }
+
+    h1 {
+      margin: 0 auto;
+      font-size: 60px / $em;
+      line-height: 44 / 44 * 1em;
+    }
+
+    h3 {
+      max-width: $cols5;
+      margin: 1em auto;
+      font-size: 28px / $em;
+      line-height: 28 / 23 * 1em;
+    }
+
+    .gloves {
+      max-width: $cols6;
+      margin: 0 auto;
+    }
+
+    #glove-right {
+      width: $cols3;
+      float: right;
+    }
+
+    #glove-left {
+      width: $cols3;
+      float: left;
+    }
+  }
+
+  #classes, #trainers, #join {
+    clear: both;
+
+    .block {
+      margin-top: 1em;
+      clear: both;
+      
+      h2, p {
+        max-width: $cols4;
+      }
+      img {
+        max-width: $cols3;
+        float: right;
+      }
+    }
+  }
+
+  #contact {
+    clear: both;
+  }
+}
+
+////// Tablet layout 600-911 px Zoomed in above 600 px //////
+
+@media only screen and (min-width: 37.5em) {
+
+  .wrapper, header, section {
+    padding: 0 48px/$em;
+  }
+
+  #logo img {
+    float: left;
+    width: $cols3;
+  }
+
+  #navigation {
+    float: right;
+
+    ul {
+      padding: 0;
+    }
+  }
+
+  #masthead {
+
+    #intro {
+      padding: 2em 0;
+    }
+  }
+
+  #classes, #trainers, #join {
+
+    .block {
+      
+      h2, p {
+
+      }
+
+      img {
+        max-width: $cols4;
+      }
+    }
+  }
+}
+
+////// Widescreen layout 912-1887 px Zoomed in above 912 px //////
+
+@media screen and (min-width: 57em) {
+
+  .wrapper, header, section {
+    padding: 0 24px/$em;
+    max-width: $cols16;
+  }
+
+
+  #masthead {
+
+    h1 {
+      margin: 1em auto .48em;
+      font-size: 88px / $em;
+      line-height: 44 / 44 * 1em;
+    }
+
+    h3 {
+      max-width: $cols5;
+      margin: 0 auto;
+      font-size: 36px / $em;
+      line-height: 36 / 23 * 1em;
+    }
+
+    .gloves {
+      max-width: $cols10;
+    }
+
+    #glove-right {
+      width: $cols5;
+    }
+
+    #glove-left {
+      width: $cols5;
+    }
+  }
+
+
+  #classes, #trainers, #join {
+    clear: both;
+
+    .block {
+      display: inline-block;
+      margin-top: 1em;
+      margin-left: $gutter;
+      max-width: $cols4 - 8px/$em;
+      clear: both;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      
+      h2, p {
+        max-width: $cols4;
+      }
+      img {
+        max-width: $cols4;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 57em) and (max-width: 117.9375em) {
+
+
+}
+
+
+
+////// Huge-screen layout 1888-2520 px Zoomed in above 1920 px //////
+
+@media screen and (min-width: 118em) {
+
+
+}
+
+
+
+
+
+
+
+
 
 
